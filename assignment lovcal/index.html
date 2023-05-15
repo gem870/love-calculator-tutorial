@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="date">
+      <marquee id="timer"></marquee>
+    </div>
+    <div class="main">
+      <h3 style="color: rgb(123, 38, 38)">LOVE CALCULATOR!!</h3>
+      <p style="color: rgb(114, 121, 121)">
+        Please enter you name and your pattners name.
+      </p>
+      <div class="containt">
+        <br />
+        <p>Your Name</p>
+        <input type="text" name="" id="name1" placeholder="yours" />
+        <br />
+        <br />
+        <p>Pattners Name</p>
+        <input type="text" name="" id="name2" placeholder="your Pattners" />
+        <br /><br />
+        <br />
+        <br />
+        <button onclick="lovecal()">Submit</button>
+      </div>
+      <br />
+      <div class="left">
+        <br />
+        <h3>Love score:</h3>
+        <br />
+
+        <h1 id="loveinfor">0%</h1>
+      </div>
+
+      <div class="right">
+        <div class="play">
+          <br />
+          <p style="color: rgb(208, 194, 181);">Love Infor..!</p>
+          <p id="playme" style="color: azure"></p>
+        </div>
+        <p id="display" style="color: black;"></p>
+      </div>
+    </div>
+
+    <script>
+      function lovecal() {
+        var name1 = document.getElementById("name1").value;
+        var name2 = document.getElementById("name2").value;
+
+        if (name1 === "" || name2 === "") {
+          display("Enter name please...!!");
+          return;
+        }
+        if (name1.length <= 2 || name2.length <= 2) {
+          display("Enter name with three letters words up...!!");
+          return;
+        }
+        if (!isNaN(name1) || !isNaN(name2)) {
+          display("Numbers are not allowed...!!");
+          return;
+        }
+
+        var lovdata = Math.random() * 100;
+        lovdata = Math.floor(lovdata);
+        countDown(lovdata + "%");
+
+        if (lovdata < 50) {
+          document.getElementById("playme").innerHTML =
+            "Display in few seconds.....";
+          timeOut("You and your pattener needs delivrances");
+          return;
+        } else if (lovdata >= 80) {
+          document.getElementById("playme").innerHTML =
+            "Display in few seconds......";
+          timeOut("Love in perfection \n Keep growing in love..!!");
+          return;
+        } else if (lovdata >= 50 && lovdata <= 79) {
+          document.getElementById("playme").innerHTML =
+            "Display in few seconds.....";
+          timeOut("Build more love...! \n Keep growing in love");
+        }
+      }
+
+      function display(msg) {
+        document.getElementById("display").innerHTML = msg;
+      }
+
+      function settime(msg) {
+        document.getElementById("loveinfor").innerHTML = msg;
+      }
+
+      function timeOut(msg) {
+        setTimeout(function () {
+          document.getElementById("display").innerHTML = msg;
+        }, 4000);
+      }
+
+      function countDown(result) {
+        let count = 5;
+        const countdown = setInterval(() => {
+          settime(count);
+          if (count == 0) {
+            settime(result);
+            clearInterval(countdown);
+            return;
+          }
+          count--;
+
+          if (count < 0) {
+            clearInterval(countdown);
+          }
+        }, 
+        600);
+      }
+
+      // const now = new Date();
+      // const year = now.getFullYear();
+      // const month = now.getMonth() + 1;
+      // const day = now.getDate();
+      // const hours = now.getHours();
+      // const minutes = now.getMinutes();
+      // const seconds = now.getSeconds();
+      // (document.getElementById("timer").innerHTML = day),
+      //   "/",
+      //   month,
+      //   "/",
+      //   year,
+      //   "   ",
+      //   hours,
+      //   ":",
+      //   minutes,
+      //   ":",
+      //   seconds;
+    </script>
+  </body>
+</html>
